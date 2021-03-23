@@ -1,6 +1,5 @@
 package ru.stqa.pft.adressbook.appmeneger;
 
-import com.sun.javafx.binding.ExpressionHelperBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.stqa.pft.adressbook.model.GroupData;
