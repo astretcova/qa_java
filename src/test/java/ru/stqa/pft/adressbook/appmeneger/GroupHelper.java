@@ -4,9 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.stqa.pft.adressbook.model.GroupData;
 
-public class GroupHelp extends HelperBase {
+public class GroupHelper extends HelperBase {
 
-    public GroupHelp(WebDriver wd) {
+    public GroupHelper(WebDriver wd) {
         super(wd);
     }
 
@@ -43,4 +43,5 @@ public class GroupHelp extends HelperBase {
     public void submitGroupModification() {
         click(By.name("update"));
     }
+
 }

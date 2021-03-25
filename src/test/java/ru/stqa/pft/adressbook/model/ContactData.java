@@ -1,6 +1,6 @@
-package hw4;
+package ru.stqa.pft.adressbook.model;
 
-public class ConactData {
+public class ContactData {
   private final String firstname;
   private final String lastname;
   private final String email;
@@ -10,7 +10,7 @@ public class ConactData {
   private final String email2;
   private final String byear;
 
-  public ConactData(String firstname, String lastname, String email, String address2, String mobile, String address, String email2, String byear) {
+  public ContactData(String firstname, String lastname, String email, String address2, String mobile, String address, String email2, String byear) {
     this.firstname = firstname;
     this.lastname = lastname;
     this.email = email;

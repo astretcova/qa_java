@@ -2,12 +2,12 @@ package ru.stqa.pft.adressbook.tests;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import ru.stqa.pft.adressbook.appmeneger.ApplicationMenege;
+import ru.stqa.pft.adressbook.appmeneger.ApplicationManager;
 
 
 public class TestBase {
 
-    protected final ApplicationMenege app = new ApplicationMenege();
+    protected final ApplicationManager app = new ApplicationManager();
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws Exception {
@@ -19,7 +19,7 @@ public class TestBase {
         app.stop();
     }
 
-    public ApplicationMenege getApp() {
+    public ApplicationManager getApp() {
         return app;
     }
 }

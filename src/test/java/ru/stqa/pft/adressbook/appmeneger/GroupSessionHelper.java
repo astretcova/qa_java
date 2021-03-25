@@ -3,9 +3,9 @@ package ru.stqa.pft.adressbook.appmeneger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class SessionHelp extends HelperBase{
+public class GroupSessionHelper extends HelperBase {
 
-    public SessionHelp(WebDriver wd) {
+    public GroupSessionHelper(WebDriver wd) {
         super(wd);
         this.wd = wd;
     }
