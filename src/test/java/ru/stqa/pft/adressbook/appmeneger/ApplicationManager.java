@@ -8,8 +8,8 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
 
     public WebDriver wd;
-    private GroupSessionHelper sessionHelp;
-    private GroupNavigationHelper navigationHelp;
+    private SessionHelper sessionHelper;
+    private GroupNavigationHelper groupNavigationHelper;
     private GroupHelper groupHelp ;
     private ContactHelper contactHelper;
     private ContactNavigationHelper contactNavigationHelper;
@@ -19,13 +19,13 @@ public class ApplicationManager {
         wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/");
         groupHelp = new GroupHelper(wd);
-        navigationHelp = new GroupNavigationHelper(wd);
-        sessionHelp = new GroupSessionHelper(wd);
+        groupNavigationHelper = new GroupNavigationHelper(wd);
+        sessionHelper = new SessionHelper(wd);
 
         contactHelper = new ContactHelper(wd);
         contactNavigationHelper = new ContactNavigationHelper(wd);
 
-        sessionHelp.login("admin", "secret");
+        sessionHelper.login("admin", "secret");
     }
 
     public void stop() {
@@ -36,15 +36,15 @@ public class ApplicationManager {
         return groupHelp;
     }
 
-    public GroupNavigationHelper getNavigationHelp() {
-        return navigationHelp;
+    public GroupNavigationHelper getGroupNavigationHelper() {
+        return groupNavigationHelper;
     }
 
-    public ContactHelper getContactHelp() {
+    public ContactHelper getContactHelper() {
         return contactHelper;
     }
 
-    public ContactNavigationHelper getContactNavigationHelp() {
+    public ContactNavigationHelper getContactNavigationHelper() {
         return contactNavigationHelper;
     }
 
