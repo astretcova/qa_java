@@ -35,7 +35,7 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("(//input[@name='submit'])[2]"));
     }
 
-    public void returnToGroupPage() {
+    public void returnToContactPage() {
         click(By.linkText("home page"));
     }
     public void selectContact() {
