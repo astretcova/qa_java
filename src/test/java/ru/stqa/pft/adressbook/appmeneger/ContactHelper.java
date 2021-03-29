@@ -1,10 +1,7 @@
 package ru.stqa.pft.adressbook.appmeneger;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import ru.stqa.pft.adressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase {
@@ -13,7 +10,7 @@ public class ContactHelper extends HelperBase {
         super(wd);
     }
 
-    public void fillContactForm(ContactData conactData, boolean creation) {
+    public void fillContactForm(ContactData conactData) {
         type(By.name("firstname"), conactData.getFirstname());
         type(By.name("lastname"), conactData.getLastname());
         type(By.name("address"), conactData.getAddress());
@@ -22,13 +19,6 @@ public class ContactHelper extends HelperBase {
         type(By.name("mobile"), conactData.getMobile());
         type(By.name("email2"), conactData.getEmail2());
         type(By.name("byear"), conactData.getByear());
-
-
-        if (creation) {
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(conactData.getGroup());
-        } else {
-            Assert.assertFalse(isElementPresent(By.name("new_group")));
-        }
     }
 
     public void submitContact() {
@@ -56,5 +46,21 @@ public class ContactHelper extends HelperBase {
 
     public void submitContactModification() {
         click(By.name("update"));
+    }
+
+    public void createContact(ContactData contact) {
+        gotoNewContact();
+        fillContactForm(new ContactData("aaa", "bbb", "astrecova.marina@gmail.com", "ccc", "89110034406", "ddd", "mastretsova@rbc.ru", "1984"));
+        submitContact();
+        returnToContactPage();
+
+    }
+
+    private void gotoNewContact() {
+        click(By.linkText("add new"));
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.name("selected[]"));
     }
 }
