@@ -28,20 +28,21 @@ public class ContactHelper extends HelperBase {
     public void returnToContactPage() {
         click(By.linkText("home page"));
     }
-    public void selectContact() {
-        click(By.name("selected[]"));
+
+    public void selectContact(int index) {
+        wd.findElements(By.name("selected[]")).get(index).click();
     }
 
     public void deleteSelectedContact() {
-        click(By.xpath("//div[2]/input"));
+        click(By.xpath("//input[@value='Delete']"));
     }
 
     public void allertAccept() {
         wd.switchTo().alert().accept();
     }
 
-    public void initContactModification() {
-        click(By.xpath("(//img[@alt='Edit'])[1]"));
+    public void initContactModification(int i) {
+        click(By.xpath("(//img[@alt='Edit'])"));
     }
 
     public void submitContactModification() {
