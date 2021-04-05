@@ -3,12 +3,11 @@ package ru.stqa.pft.adressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.adressbook.model.ContactData;
-import ru.stqa.pft.adressbook.model.GroupData;
 
 public class ContactModificationTest extends TestBase {
 
     @Test
-    public void testGroupModification() {
+    public void testContactModification() {
         app.getContactNavigationHelper().gotoHomeContact();
         int before = app.getContactHelper().getContactCount();
         if (! app.getContactHelper().isThereAContact()){
