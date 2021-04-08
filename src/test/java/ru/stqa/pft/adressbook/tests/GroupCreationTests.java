@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import ru.stqa.pft.adressbook.model.GroupData;
 
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -14,9 +15,16 @@ public class GroupCreationTests extends TestBase {
 
     app.getGroupNavigationHelper().gotoGroupPage();
     List<GroupData> before = app.getGroupHelp().getGroupList();
-    app.getGroupHelp().createGroup(new GroupData("test1", null, null));
+    GroupData group = new GroupData("test2", null, null);
+    app.getGroupHelp().createGroup(group);
     List<GroupData> after = app.getGroupHelp().getGroupList();
     Assert.assertEquals(after.size(), before.size() + 1);
+
+    before.add(group);
+    Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(),g2.getId());
+    before.sort(byId);
+    after.sort(byId);
+    Assert.assertEquals(before, after);
   }
 
 }
