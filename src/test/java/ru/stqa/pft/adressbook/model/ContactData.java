@@ -3,7 +3,11 @@ package ru.stqa.pft.adressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-  private final String id;
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  private int id;
   private final String firstname;
   private final String lastname;
   private final String email;
@@ -13,7 +17,7 @@ public class ContactData {
   private final String email2;
   private final String byear;
 
-  public ContactData(String id, String firstname,String lastname, String email, String address2, String mobile, String address, String email2, String byear) {
+  public ContactData(int id, String firstname,String lastname, String email, String address2, String mobile, String address, String email2, String byear) {
     this.id = id;
     this.firstname = firstname;
     this.lastname = lastname;
@@ -25,7 +29,7 @@ public class ContactData {
     this.byear = byear;
   }
   public ContactData(String firstname,String lastname, String email, String address2, String mobile, String address, String email2, String byear) {
-    this.id = null;
+    this.id = Integer.MAX_VALUE;
     this.firstname = firstname;
     this.lastname = lastname;
     this.email = email;
@@ -40,30 +44,8 @@ public class ContactData {
     return firstname;
   }
 
-  public String getId() {
+  public int getId() {
     return id;
-  }
-
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id='" + id + '\'' +
-            ", firstname='" + firstname + '\'' +
-            ", lastname='" + lastname + '\'' +
-            '}';
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    ContactData that = (ContactData) o;
-    return Objects.equals(id, that.id) && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, firstname, lastname);
   }
 
   public String getLastname() {
@@ -92,6 +74,28 @@ public class ContactData {
 
   public String getByear() {
     return byear;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactData that = (ContactData) o;
+    return id == that.id && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, firstname, lastname);
+  }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id='" + id + '\'' +
+            ", firstname='" + firstname + '\'' +
+            ", lastname='" + lastname + '\'' +
+            '}';
   }
 
 }

@@ -23,14 +23,6 @@ public class GroupData {
         this.footer = footer;
     }
 
-    @Override
-    public String toString() {
-        return "GroupData{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                '}';
-    }
-
     public int getId() {
         return id;
     }
@@ -58,5 +50,12 @@ public class GroupData {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+    @Override
+    public String toString() {
+        return "GroupData{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
