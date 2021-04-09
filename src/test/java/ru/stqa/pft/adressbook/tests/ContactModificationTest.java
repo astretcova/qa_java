@@ -11,7 +11,7 @@ public class ContactModificationTest extends TestBase {
 
     @Test
     public void testContactModification() {
-        app.getContactNavigationHelper().gotoHomeContact();
+        app.goToPage().home();
         if (! app.contact().isThereAContact()){
             app.contact().createContact(new ContactData("aaa", "bbb", "astrecova.marina@gmail.com", "ccc", "89110034406", "ddd", "mastretsova@rbc.ru", "1984"));
         }
@@ -22,7 +22,7 @@ public class ContactModificationTest extends TestBase {
         ContactData contact = new ContactData(before.get(before.size()-1).getId(), "333", "333", null, null, null, null, null, null);
         app.contact().fillContactForm(contact);
         app.contact().submitContactModification();
-        app.getContactNavigationHelper().gotoHomeContact();
+        app.goToPage().home();
         List<ContactData> after = app.contact().list();
 
         Assert.assertEquals(after.size(), before.size());
