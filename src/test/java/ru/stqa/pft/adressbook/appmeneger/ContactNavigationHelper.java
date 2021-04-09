@@ -8,7 +8,7 @@ public class ContactNavigationHelper extends HelperBase {
         super(wd);
     }
 
-    public void gotoNewContact() {
+    public void newContact() {
         if (isElementPresent(By.tagName("h1"))
                 && wd.findElement(By.tagName("h1")).getText().equals("Edit / add address book entry")
                 && isElementPresent(By.name("submit"))) {
@@ -16,7 +16,7 @@ public class ContactNavigationHelper extends HelperBase {
         }
         click(By.linkText("add new"));
     }
-    public void gotoHomeContact() {
+    public void home() {
         if (isElementPresent(By.id("maintable"))){
             return;
         }

@@ -8,19 +8,19 @@ import java.util.List;
 
 public class ContactDeletionsTests extends TestBase {
 
-    @Test(enabled = false)
+    @Test
     public void testContactDeletions() throws Exception {
 
         app.getContactNavigationHelper().gotoHomeContact();
-        if (! app.getContactHelper().isThereAContact()){
-            app.getContactHelper().createContact(new ContactData("aaa", "bbb", "astrecova.marina@gmail.com", "ccc", "89110034406", "ddd", "mastretsova@rbc.ru", "1984"));
+        if (! app.contact().isThereAContact()){
+            app.contact().createContact(new ContactData("aaa", "bbb", "astrecova.marina@gmail.com", "ccc", "89110034406", "ddd", "mastretsova@rbc.ru", "1984"));
         }
-        List<ContactData> before = app.getContactHelper().getContactList();
-        app.getContactHelper().selectContact(before.size()-1);
-        app.getContactHelper().deleteSelectedContact();
-        app.getContactHelper().alertAccept();
+        List<ContactData> before = app.contact().list();
+        app.contact().selectContact(before.size()-1);
+        app.contact().deleteSelectedContact();
+        app.contact().alertAccept();
         app.getContactNavigationHelper().gotoHomeContact();
-        List<ContactData> after = app.getContactHelper().getContactList();
+        List<ContactData> after = app.contact().list();
         Assert.assertEquals(after.size(), before.size() - 1);
 
         before.remove(before.size() - 1);

@@ -7,18 +7,18 @@ import ru.stqa.pft.adressbook.model.ContactData;
 import java.util.Comparator;
 import java.util.List;
 
+
 public class ContactCreationTests extends TestBase {
 
-    @Test(enabled = false)
+    @Test
     public void testCreationContact() throws Exception {
-        app.getContactNavigationHelper().gotoHomeContact();
-        List<ContactData> before = app.getContactHelper().getContactList();
-        app.getContactNavigationHelper().gotoNewContact();
+
+        app.goToPage().home();
+        List<ContactData> before = app.contact().list();
+        app.goToPage().newContact();
         ContactData contact = new ContactData("aaa", "bbb", null, null, null, null, null, null);
-        app.getContactHelper().fillContactForm(contact);
-        app.getContactHelper().submitContact();
-        app.getContactHelper().returnToContactPage();
-        List<ContactData> after = app.getContactHelper().getContactList();
+        app.contact().create(contact);
+        List<ContactData> after = app.contact().list();
         Assert.assertEquals(after.size(), before.size() + 1);
 
         before.add(contact);
@@ -27,6 +27,7 @@ public class ContactCreationTests extends TestBase {
         after.sort(byId);
         Assert.assertEquals(before, after);
     }
+
 }
 
 
