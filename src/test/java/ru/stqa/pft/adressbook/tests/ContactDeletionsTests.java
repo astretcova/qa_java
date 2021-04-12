@@ -12,18 +12,20 @@ public class ContactDeletionsTests extends TestBase {
     public void testContactDeletions() throws Exception {
 
         app.goToPage().home();
-        if (! app.contact().isThereAContact()){
-            app.contact().createContact(new ContactData("aaa", "bbb", "astrecova.marina@gmail.com", "ccc", "89110034406", "ddd", "mastretsova@rbc.ru", "1984"));
+        if (app.group().list().size() == 0) {
+            app.contact().createContact(new ContactData()
+                    .withFirstname("111").withLastname("222").withMobile("333").withEmail("444").withEmail2("555")
+                    .withAddress("66").withAddress2("777").withByear("888"));
         }
         List<ContactData> before = app.contact().list();
-        app.contact().selectContact(before.size()-1);
-        app.contact().deleteSelectedContact();
-        app.contact().alertAccept();
+        int index = before.size()-1;
+
+        app.contact().delete(index);
         app.goToPage().home();
         List<ContactData> after = app.contact().list();
         Assert.assertEquals(after.size(), before.size() - 1);
 
-        before.remove(before.size() - 1);
+        before.remove(index);
         Assert.assertEquals(before, after);
     }
 

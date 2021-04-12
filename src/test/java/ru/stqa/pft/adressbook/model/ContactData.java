@@ -3,42 +3,63 @@ package ru.stqa.pft.adressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-  public void setId(int id) {
+  private int id= Integer.MAX_VALUE;;
+  private  String firstname;
+  private  String lastname;
+  private  String email;
+  private  String address2;
+  private  String mobile;
+  private  String address;
+  private  String email2;
+
+
+  public ContactData withId(int id) {
     this.id = id;
+    return this;
+  }
+  public ContactData withFirstname(String firstname) {
+    this.firstname = firstname;
+    return this;
   }
 
-  private int id;
-  private final String firstname;
-  private final String lastname;
-  private final String email;
-  private final String address2;
-  private final String mobile;
-  private final String address;
-  private final String email2;
-  private final String byear;
+  public ContactData withLastname(String lastname) {
+    this.lastname = lastname;
+    return this;
+  }
 
-  public ContactData(int id, String firstname,String lastname, String email, String address2, String mobile, String address, String email2, String byear) {
-    this.id = id;
-    this.firstname = firstname;
-    this.lastname = lastname;
+  public ContactData withEmail(String email) {
     this.email = email;
-    this.address2 = address2;
-    this.mobile = mobile;
-    this.address = address;
-    this.email2 = email2;
-    this.byear = byear;
+    return this;
   }
-  public ContactData(String firstname,String lastname, String email, String address2, String mobile, String address, String email2, String byear) {
-    this.id = Integer.MAX_VALUE;
-    this.firstname = firstname;
-    this.lastname = lastname;
-    this.email = email;
+
+  public ContactData withAddress2(String address2) {
     this.address2 = address2;
-    this.mobile = mobile;
-    this.address = address;
-    this.email2 = email2;
-    this.byear = byear;
+    return this;
   }
+
+
+  public ContactData withMobile(String mobile) {
+    this.mobile = mobile;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData withEmail2(String email2) {
+    this.email2 = email2;
+    return this;
+  }
+
+  public ContactData withByear(String byear) {
+    this.byear = byear;
+    return this;
+  }
+
+  private  String byear;
+
 
   public String getFirstname() {
     return firstname;
