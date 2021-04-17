@@ -3,8 +3,11 @@ package ru.stqa.pft.adressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.adressbook.model.ContactData;
+import ru.stqa.pft.adressbook.model.Contacts;
+import ru.stqa.pft.adressbook.model.GroupData;
 
-import java.util.List;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactDeletionsTests extends TestBase {
 
@@ -12,21 +15,20 @@ public class ContactDeletionsTests extends TestBase {
     public void testContactDeletions() throws Exception {
 
         app.goToPage().home();
-        if (app.group().all().size() == 0) {
+        if (app.contact().all().size() == 0) {
             app.contact().createContact(new ContactData()
                     .withFirstname("111").withLastname("222").withMobile("333").withEmail("444").withEmail2("555")
                     .withAddress("66").withAddress2("777").withByear("888"));
         }
-        List<ContactData> before = app.contact().list();
-        int index = before.size()-1;
 
-        app.contact().delete(index);
+        Contacts before = app.contact().all();
+        ContactData deletedContact = before.iterator().next();
+        app.contact().delete(deletedContact);
+
         app.goToPage().home();
-        List<ContactData> after = app.contact().list();
+        Contacts after = app.contact().all();
         Assert.assertEquals(after.size(), before.size() - 1);
-
-        before.remove(index);
-        Assert.assertEquals(before, after);
+        assertThat(after, equalTo(before.without(deletedContact)));
     }
 
 }
