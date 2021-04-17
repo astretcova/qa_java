@@ -12,7 +12,7 @@ public class ContactDeletionsTests extends TestBase {
     public void testContactDeletions() throws Exception {
 
         app.goToPage().home();
-        if (app.group().list().size() == 0) {
+        if (app.group().all().size() == 0) {
             app.contact().createContact(new ContactData()
                     .withFirstname("111").withLastname("222").withMobile("333").withEmail("444").withEmail2("555")
                     .withAddress("66").withAddress2("777").withByear("888"));

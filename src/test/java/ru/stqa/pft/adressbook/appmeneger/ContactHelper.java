@@ -6,7 +6,9 @@ import org.openqa.selenium.WebElement;
 import ru.stqa.pft.adressbook.model.ContactData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -85,6 +87,19 @@ public class ContactHelper extends HelperBase {
 
     public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<>();
+        List<WebElement> elements = wd.findElements(By.tagName("tr"));
+        elements.remove(0);
+        for (WebElement element : elements) {
+            List<WebElement> rowColumns = element.findElements(By.tagName("td"));
+            String lastName = rowColumns.get(1).getText();
+            String firstName = rowColumns.get(2).getText();
+            ContactData contact = new ContactData().withFirstname(firstName).withLastname(lastName);
+            contacts.add(contact);
+        }
+        return contacts;
+    }
+    public Set<ContactData> all() {
+        Set<ContactData> contacts = new HashSet<ContactData>();
         List<WebElement> elements = wd.findElements(By.tagName("tr"));
         elements.remove(0);
         for (WebElement element : elements) {
