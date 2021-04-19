@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.adressbook.model.ContactData;
 import ru.stqa.pft.adressbook.model.Contacts;
-import ru.stqa.pft.adressbook.model.GroupData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,19 +15,8 @@ public class ContactHelper extends HelperBase {
         super(wd);
     }
 
-    public void create(ContactData contact) {
-        fillContactForm(contact);
-        submitContact();
-        returnToContactPage();
-    }
-
     public void selectContactById(int id) {
         wd.findElement(By.cssSelector("input[value='" + id +"']")).click();
-    }
-
-    public void delete(ContactData group) {
-        selectContactById(group.getId());
-        deleteSelectedContact();
     }
 
     public void fillContactForm(ContactData contactData) {
@@ -103,8 +91,13 @@ public class ContactHelper extends HelperBase {
         }
         return contacts;
     }
+    public Contacts contactCache = null;
+
     public Contacts all() {
-        Contacts contacts = new Contacts();
+        if (contactCache != null){
+            return new Contacts(contactCache);
+        }
+        contactCache = new Contacts();
         List<WebElement> elements = wd.findElements(By.tagName("tr"));
         elements.remove(0);
         for (WebElement element : elements) {
@@ -113,9 +106,9 @@ public class ContactHelper extends HelperBase {
             String firstName = rowColumns.get(2).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
             ContactData contact = new ContactData().withId(id).withFirstname(firstName).withLastname(lastName);
-            contacts.add(contact);
+            contactCache.add(contact);
         }
-        return contacts;
+        return new Contacts(contactCache);
     }
 
     public void modify(ContactData contact) {
@@ -123,6 +116,18 @@ public class ContactHelper extends HelperBase {
         initContactModification();
         fillContactForm(contact);
         submitContactModification();
+        contactCache = null;
+        returnToContactPage();
+    }
+    public void delete(ContactData group) {
+        selectContactById(group.getId());
+        deleteSelectedContact();
+        contactCache = null;
+    }
+    public void create(ContactData contact) {
+        fillContactForm(contact);
+        submitContact();
+        contactCache = null;
         returnToContactPage();
     }
 
