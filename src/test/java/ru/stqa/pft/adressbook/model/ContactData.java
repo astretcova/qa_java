@@ -11,6 +11,8 @@ public class ContactData {
   private  String mobile;
   private  String address;
   private  String email2;
+  private String home;
+  private String work;
 
 
   public ContactData withId(int id) {
@@ -57,6 +59,21 @@ public class ContactData {
     this.byear = byear;
     return this;
   }
+  public ContactData withHomeNumber(String home) {
+    this.home = home;
+    return this;
+  }
+
+  public ContactData withMobileNumber(String mobile) {
+    this.mobile = mobile;
+    return this;
+  }
+  public ContactData withWorkNumber(String work) {
+    this.work = work;
+    return this;
+  }
+
+
 
   private  String byear;
 
@@ -118,5 +135,7 @@ public class ContactData {
             ", lastname='" + lastname + '\'' +
             '}';
   }
+
+
 
 }
