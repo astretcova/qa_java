@@ -114,6 +114,7 @@ public class ContactData {
     return byear;
   }
 
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -127,6 +128,7 @@ public class ContactData {
     return Objects.hash(id, firstname, lastname);
   }
 
+
   @Override
   public String toString() {
     return "ContactData{" +
@@ -137,5 +139,15 @@ public class ContactData {
   }
 
 
+  public String getHomeNumber() {
+    return home;
+  }
 
+  public String getMobileNumber() {
+    return mobile;
+  }
+
+  public String getWorkNumber() {
+    return work;
+  }
 }
